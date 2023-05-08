@@ -3,7 +3,6 @@ interface Props {
   children: React.ReactNode;
   label: string;
   placeholder: string;
-  image: any;
 }
 
 const FormController: React.FC<Props> = ({ label, placeholder, children }) => {
