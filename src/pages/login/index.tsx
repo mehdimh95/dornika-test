@@ -1,6 +1,10 @@
 import Container from '@/components/Container';
 import BlueButton from '@/components/Button/Button';
 import FormController from '@/components/FormController';
+import { MessageText1 } from '../../../public/icons/messge';
+import { ArrowLeft } from '../../../public/icons/arrowleft';
+import { Lock } from '../../../public/icons/lock';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -42,18 +46,15 @@ export default function Login() {
           </Link>
         </div>
         <div className='flex flex-col gap-12  self-stretch mx-14'>
-          <FormController
-            label={' ایمیل'}
-            placeholder={' example@mail.com'}
-            image={'/icons/message.png'}
-          ></FormController>
-          <FormController
-            label={'رمز عبور'}
-            placeholder={'حداقل 8 کاراکتر'}
-            image={'/icons/lock.png'}
-          ></FormController>
-          <BlueButton image={'/icons/Vector.png'}>
+          <FormController label={' ایمیل'} placeholder={' example@mail.com'}>
+            <MessageText1 />
+          </FormController>
+          <FormController label={'رمز عبور'} placeholder={'حداقل 8 کاراکتر'}>
+            <Lock />
+          </FormController>
+          <BlueButton>
             <span className='font-bold leading-6'> ورود به حساب</span>
+            <ArrowLeft />
           </BlueButton>
         </div>
       </div>

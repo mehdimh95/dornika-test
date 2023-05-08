@@ -1,8 +1,11 @@
+import BlueButton from '@/components/Button/Button';
 import Container from '@/components/Container';
 import FormController from '@/components/FormController';
-import BlueButton from '@/components/Button/Button';
 import Image from 'next/image';
-import Link from 'next/link';
+import { ArrowLeft } from '../../../public/icons/arrowleft';
+import { Calendar } from '../../../public/icons/calender';
+import { Card } from '../../../public/icons/card';
+import { User } from '../../../public/icons/user';
 
 export default function SingUp() {
   return (
@@ -26,22 +29,20 @@ export default function SingUp() {
           <FormController
             label={'نام و نام خانوادگی'}
             placeholder={'محمد حسین رحمتی'}
-            image={'/icons/user.png'}
-          ></FormController>
-          <FormController
-            label={'کد ملی'}
-            placeholder={'208-1235-456'}
-            image={'/icons/card.png'}
-          ></FormController>
-          <FormController
-            label={'تاریخ تولد'}
-            placeholder={'1370/06/31'}
-            image={'/icons/calendar.png'}
-          ></FormController>
+          >
+            <User />
+          </FormController>
+          <FormController label={'کد ملی'} placeholder={'208-1235-456'}>
+            <Card />
+          </FormController>
+          <FormController label={'تاریخ تولد'} placeholder={'1370/06/31'}>
+            <Calendar />
+          </FormController>
         </div>
         <div className='flex flex-col self-stretch items-end p-8'>
-          <BlueButton image={'/icons/vector.png'}>
+          <BlueButton>
             <span className='font-bold leading-6'>ورود به حساب</span>
+            <ArrowLeft />
           </BlueButton>
         </div>
       </div>
