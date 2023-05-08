@@ -1,9 +1,9 @@
-import Container from '@/components/Container';
 import BlueButton from '@/components/Button/Button';
+import Container from '@/components/Container';
 import FormController from '@/components/FormController';
-import { MessageText1 } from '../../../public/icons/messge';
-import { ArrowLeft } from '../../../public/icons/arrowleft';
-import { Lock } from '../../../public/icons/lock';
+import { ArrowLeft } from '../../components/icons/arrowleft';
+import { Lock } from '../../components/icons/lock';
+import { MessageText1 } from '../../components/icons/messge';
 
 import Image from 'next/image';
 import Link from 'next/link';

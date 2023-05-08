@@ -2,10 +2,10 @@ import BlueButton from '@/components/Button/Button';
 import Container from '@/components/Container';
 import FormController from '@/components/FormController';
 import Image from 'next/image';
-import { ArrowLeft } from '../../../public/icons/arrowleft';
-import { Calendar } from '../../../public/icons/calender';
-import { Card } from '../../../public/icons/card';
-import { User } from '../../../public/icons/user';
+import { ArrowLeft } from '../../components/icons/arrowleft';
+import { Calendar } from '../../components/icons/calender';
+import { Card } from '../../components/icons/card';
+import { User } from '../../components/icons/user';
 
 export default function SingUp() {
   return (
