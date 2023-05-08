@@ -1,6 +1,6 @@
 import BlueButton from '@/components/Button/Button';
-import Container from '@/components/Container';
 import FormController from '@/components/FormController';
+import Container from '@/components/layout/Container';
 import { ArrowLeft } from '../../components/icons/arrowleft';
 import { Lock } from '../../components/icons/lock';
 import { MessageText1 } from '../../components/icons/messge';

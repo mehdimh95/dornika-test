@@ -1,6 +1,6 @@
 import BlueButton from '@/components/Button/Button';
-import Container from '@/components/Container';
 import FormController from '@/components/FormController';
+import Container from '@/components/layout/Container';
 import Image from 'next/image';
 import { ArrowLeft } from '../../components/icons/arrowleft';
 import { Calendar } from '../../components/icons/calender';
@@ -25,7 +25,7 @@ export default function SingUp() {
         <p className=' text-black  font-bold text-xl'>
           لطفا اطلاعات خود را با دقت وارد نمائید
         </p>
-        <div className='flex flex-col gap-12 w-full px-52 pt-16 pb-[300px] border-b border-b-fade-gray'>
+        <div className='flex flex-col gap-12 w-full px-52 pt-16  border-b border-b-fade-gray'>
           <FormController
             label={'نام و نام خانوادگی'}
             placeholder={'محمد حسین رحمتی'}
