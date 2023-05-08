@@ -1,12 +1,12 @@
 import React from 'react';
-import Image from 'next/image';
 interface Props {
+  children: React.ReactNode;
   label: string;
   placeholder: string;
   image: any;
 }
 
-const FormController: React.FC<Props> = ({ label, placeholder, image }) => {
+const FormController: React.FC<Props> = ({ label, placeholder, children }) => {
   return (
     <div className='flex flex-col relative '>
       <label className='label'>
@@ -19,13 +19,9 @@ const FormController: React.FC<Props> = ({ label, placeholder, image }) => {
         placeholder={placeholder}
         className='input border border-fade-gray leading-[60px] w-full px-20 rounded-full outline-fade-gray placeholder:text-fade-gray'
       />
-      <Image
-        src={image}
-        width={24}
-        height={24}
-        alt=''
-        className='absolute top-1/2 -translate-y-1/2 right-4 pl-4 border-l border-fade-gray box-content'
-      />
+      <div className='absolute top-1/2 -translate-y-1/2 right-4 border-l border-fade-gray box-content pl-4'>
+        {children}
+      </div>
     </div>
   );
 };
