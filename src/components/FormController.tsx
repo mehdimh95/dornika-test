@@ -7,7 +7,7 @@ interface Props {
 
 const FormController: React.FC<Props> = ({ label, placeholder, children }) => {
   return (
-    <div className='flex flex-col relative '>
+    <div className='flex flex-col relative'>
       <label className='label'>
         <span className='label-text text-base text-slate-600  font-bold absolute top-[-15px] right-9 bg-white px-2'>
           {label}
