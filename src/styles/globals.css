@@ -5,6 +5,10 @@
   font-style: normal;
   font-display: swap;
 }
+.spine-button-none::-webkit-outer-spin-button,
+.spine-button-none::-webkit-inner-spin-button {
+  appearance: none;
+}
 
 @tailwind base;
 @tailwind components;
