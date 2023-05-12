@@ -14,7 +14,10 @@ const Steps: React.FC<IStepsProps> = ({ steps, currentStepId }) => {
   return (
     <div className='flex flex-col h-screen items-start relative'>
       {steps.map(({ id, label }) => (
-        <div className='flex items-center justify-center gap-6 py-2 text-white'>
+        <div
+          className='flex items-center justify-center gap-6 py-2 text-white'
+          key={id}
+        >
           <span
             className={classNames(' rounded-full p-3  border-4', {
               'bg-light-blue  border-white': currentStepId === id,
