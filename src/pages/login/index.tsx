@@ -1,12 +1,47 @@
 import BlueButton from '@/components/Button/Button';
 import FormController from '@/components/FormController';
 import Content from '@/components/layout/Content';
+import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import * as yup from 'yup';
 import { ArrowLeft } from '../../components/icons/arrowleft';
-import { Lock } from '../../components/icons/lock';
 import { MessageText1 } from '../../components/icons/messge';
+
+export interface FormValues {
+  password: number;
+  mail: string;
+}
+
+const SingUpSchema = yup.object({
+  mail: yup
+    .string()
+    .email('ایمیل وارد شده صحیح نیست')
+    .required('این فیلد اجباری است'),
+  password: yup.string().min(6, 'حداقل 6 کاراکتر').max(20, 'حداکثر 20 کاراکتر'),
+});
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm<FormValues>({
+    mode: 'onTouched',
+    shouldFocusError: true,
+    resolver: yupResolver(SingUpSchema),
+  });
+
+  const onSubmit: SubmitHandler<FormValues> = async (fieldsData) => {
+    localStorage.setItem('login', JSON.stringify(fieldsData));
+    console.log(fieldsData);
+  };
+  console.log(errors);
+
+  console.log(getValues());
+
   return (
     <Content>
       <div className='flex flex-row  h-screen items-stretch py-8 p-24'>
@@ -40,22 +75,33 @@ export default function Login() {
 
           <div className='flex flex-col justify-center items-center mb-16'>
             <h1 className='text-4xl  font-black mb-2'>ورود به داشبورد</h1>
-            <Link className='text-warm-blue' href='/'>
+            <Link className='text-warm-blue' href='/singup'>
               هنوز ثبت نام نکرده‌اید؟
             </Link>
           </div>
-          <div className='flex flex-col gap-12  self-stretch mx-14'>
-            <FormController label={' ایمیل'} placeholder={' example@mail.com'}>
-              <MessageText1 />
-            </FormController>
-            <FormController label={'رمز عبور'} placeholder={'حداقل 8 کاراکتر'}>
-              <Lock />
-            </FormController>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='flex flex-col gap-12  self-stretch mx-14'
+          >
+            <FormController
+              label={' ایمیل'}
+              placeholder={' example@mail.com'}
+              icon={<MessageText1 />}
+              {...register('mail')}
+              error={errors?.mail?.message}
+            />
+            <FormController
+              label={' رمز عبور'}
+              placeholder={'********'}
+              icon={<MessageText1 />}
+              error={errors?.password?.message}
+              {...register('password')}
+            />
             <BlueButton>
               <span className='font-bold leading-6'> ورود به حساب</span>
               <ArrowLeft />
             </BlueButton>
-          </div>
+          </form>
         </div>
       </div>
     </Content>
