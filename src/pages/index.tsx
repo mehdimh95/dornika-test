@@ -2,6 +2,7 @@ import Layout from '@/components/Dashboard/Layout/Layout';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import React from 'react';
 import { toast } from 'react-toastify';
 
 const CircleChart = dynamic(
@@ -38,6 +39,7 @@ type TTrendItem = {
     score: 0;
   };
 };
+
 const Dashboard = () => {
   const [trendingList, setTrendingList] = React.useState<TTrendItem[]>([]);
 
@@ -55,6 +57,7 @@ const Dashboard = () => {
         toast.error('خطایی در دریافت لیست محبوب‌ترین‌ها پیش آمد');
       });
   }, []);
+
   return (
     <Layout>
       <div className='w-3/4'>
@@ -121,62 +124,29 @@ const Dashboard = () => {
         </div>
 
         <div className='font-bold flex flex-col gap-3'>
-          <div className='flex justify-between pb-3 border-b border-b-fade-gray '>
-            <div className='flex justify-between items-center gap-3'>
-              <Image
-                src='/images/bitcoin.svg'
-                width={24}
-                height={24}
-                alt='Bitcoin-logo'
-              />
-              <p>بیتکوین</p>
-              <p className='text-fade-gray text-xs'>BTC</p>
-            </div>
-
-            <p className='text-light-green'>+1.68%</p>
-          </div>
-          <div className='flex justify-between pb-3 border-b border-b-fade-gray '>
-            <div className='flex justify-between items-center gap-3'>
-              <Image
-                src='/images/bitcoin.svg'
-                width={24}
-                height={24}
-                alt='Bitcoin-logo'
-              />
-              <p>بیتکوین</p>
-              <p className='text-fade-gray text-xs'>BTC</p>
-            </div>
-
-            <p className='text-light-green'>+1.68%</p>
-          </div>
-          <div className='flex justify-between pb-3 border-b border-b-fade-gray '>
-            <div className='flex justify-between items-center gap-3'>
-              <Image
-                src='/images/bitcoin.svg'
-                width={24}
-                height={24}
-                alt='Bitcoin-logo'
-              />
-              <p>بیتکوین</p>
-              <p className='text-fade-gray text-xs'>BTC</p>
-            </div>
-
-            <p className='text-light-green'>+1.68%</p>
-          </div>
-          <div className='flex justify-between pb-3 border-b border-b-fade-gray '>
-            <div className='flex justify-between items-center gap-3'>
-              <Image
-                src='/images/bitcoin.svg'
-                width={24}
-                height={24}
-                alt='Bitcoin-logo'
-              />
-              <p>بیتکوین</p>
-              <p className='text-fade-gray text-xs'>BTC</p>
-            </div>
-
-            <p className='text-light-green'>+1.68%</p>
-          </div>
+          {trendingList.map(({ item }) => {
+            console.log({ item });
+            {
+              return (
+                <div
+                  key={item.coin_id}
+                  className='flex justify-between pb-3 border-b border-b-fade-gray '
+                >
+                  <div className='flex justify-between items-center gap-3'>
+                    <Image
+                      src={item.thumb}
+                      width={24}
+                      height={24}
+                      alt={item.name}
+                    />
+                    <p>{item.name}</p>
+                    <p className='text-fade-gray text-xs'>{item.slug}</p>
+                  </div>
+                  <p className='text-light-green'>{item.score}%</p>
+                </div>
+              );
+            }
+          })}
         </div>
       </div>
     </Layout>
