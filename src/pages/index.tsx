@@ -1,6 +1,8 @@
 import Layout from '@/components/Dashboard/Layout/Layout';
+import axios from 'axios';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 
 const CircleChart = dynamic(
   () => import('../components/Dashboard/Charts/Circle'),
@@ -37,6 +39,22 @@ type TTrendItem = {
   };
 };
 const Dashboard = () => {
+  const [trendingList, setTrendingList] = React.useState<TTrendItem[]>([]);
+
+  React.useEffect(() => {
+    axios
+      .get<{ coins: TTrendItem[]; exchanges: [] }>(
+        'https://api.coingecko.com/api/v3/search/trending'
+      )
+      .then((res) => {
+        setTrendingList(res.data.coins);
+        console.log(res.data.coins);
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error('خطایی در دریافت لیست محبوب‌ترین‌ها پیش آمد');
+      });
+  }, []);
   return (
     <Layout>
       <div className='w-3/4'>
