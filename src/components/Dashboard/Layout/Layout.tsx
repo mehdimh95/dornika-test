@@ -2,31 +2,30 @@ import Button from '@/components/Button/Button';
 import classNames from 'classnames';
 import Image from 'next/image';
 import React from 'react';
+import useForceUpdate from 'use-force-update';
 import AreaChart from './AreaChart';
 import Header from './Header';
 import { navItems } from './menuItems';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
+  const forceUpdate = useForceUpdate();
+
+  React.useEffect(() => {
+    forceUpdate();
+  }, [isNavOpen]);
 
   return (
-    <div className='flex flex-row-reverse'>
-      <div className='h-screen p-8 w-full'>
-        <Header setIsNavOpen={setIsNavOpen} />
-        <div>
-          <section className='flex flex-col gap-2'>
-            <AreaChart />
-            <div className='flex gap-4'>{children}</div>
-          </section>
-        </div>
-      </div>
+    <div className='flex'>
       <div
         className={classNames(
-          'flex mr-8 rounded-lg transition-all duration-200',
-          !isNavOpen ? 'w-0' : 'w-1/5'
+          'mr-8 rounded-lg w-1/5 duration-500 ease-in-out transition-all',
+          !isNavOpen
+            ? 'absolute -right-96 opacity-0'
+            : 'flex static right-0 opacity-100'
         )}
       >
-        <div className='flex flex-col items-stretch py-8 w-full overflow-hidden ease-in-out'>
+        <div className='flex flex-col items-stretch py-8 w-full'>
           <div className='w-full flex flex-col  justify-start items-center bg-white rounded-2xl h-full'>
             <Image
               src='/images/logo.svg'
@@ -48,6 +47,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </Button>
             ))}
           </div>
+        </div>
+      </div>
+      <div className='h-screen p-8 w-full'>
+        <Header setIsNavOpen={setIsNavOpen} />
+        <div>
+          <section className='flex flex-col gap-2'>
+            <AreaChart {...{ isNavOpen, setIsNavOpen }} />
+            <div className='flex gap-4'>{children}</div>
+          </section>
         </div>
       </div>
     </div>

@@ -1,9 +1,17 @@
 import dynamic from 'next/dynamic';
+import React from 'react';
 
 const SliderItem = dynamic(() => import('../slider/SliderItem'), {
   ssr: false,
 });
-const AreaChart = () => {
+
+const AreaChart = ({
+  isNavOpen,
+  setIsNavOpen,
+}: {
+  isNavOpen: boolean;
+  setIsNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <div className='flex gap-x-4'>
       <SliderItem
@@ -17,6 +25,11 @@ const AreaChart = () => {
               colors: ['#2AC479'],
             },
             chart: {
+              events: {
+                mounted: (chart) => {
+                  chart.windowResizeHandler();
+                },
+              },
               toolbar: {
                 show: false,
               },
@@ -66,6 +79,7 @@ const AreaChart = () => {
               colors: ['#219ebc'],
             },
             chart: {
+              redrawOnParentResize: isNavOpen,
               toolbar: {
                 show: false,
               },
@@ -115,6 +129,7 @@ const AreaChart = () => {
               colors: ['#f782c2'],
             },
             chart: {
+              redrawOnParentResize: isNavOpen,
               toolbar: {
                 show: false,
               },
@@ -164,6 +179,7 @@ const AreaChart = () => {
               colors: ['#f56038'],
             },
             chart: {
+              redrawOnParentResize: isNavOpen,
               toolbar: {
                 show: false,
               },
