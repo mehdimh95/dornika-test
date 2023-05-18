@@ -13,10 +13,18 @@ const BarsChart = dynamic(() => import('../components/Dashboard/Charts/Bars'), {
   ssr: false,
 });
 
+const AdvancedRealTimeChartNoSSR = dynamic(
+  () =>
+    import('react-ts-tradingview-widgets').then((w) => w.AdvancedRealTimeChart),
+  {
+    ssr: false,
+  }
+);
+
 const Dashboard = () => {
   return (
     <Layout>
-      <div className='w-2/3'>
+      <div className='w-3/4'>
         <div className='flex justify-between gap-4'>
           <div className='flex flex-col bg-white rounded-xl gap-7 p-5 flex-1'>
             <div className='flex justify-between items-center'>
@@ -54,8 +62,20 @@ const Dashboard = () => {
             <BarsChart />
           </div>
         </div>
+        <div className='flex flex-col  bg-white rounded-xl gap-7 p-5 flex-1 my-4'>
+          <AdvancedRealTimeChartNoSSR
+            width='100%'
+            theme='light'
+            height={400}
+            hide_side_toolbar
+            hide_legend
+            symbol='BTC'
+            allow_symbol_change={false}
+            locale='fa_IR'
+          />
+        </div>
       </div>
-      <div className='bg-white flex flex-col p-5 gap-6 w-1/3 rounded-xl'>
+      <div className='bg-white flex flex-col p-5 gap-6 w-1/4 rounded-xl'>
         <div className='flex justify-between'>
           <div>محبوب‌ترین کوین‌ها</div>
           <div className='border-fade-gray border text-sm  px-4 py-2 rounded-xl'>

@@ -49,7 +49,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className='h-screen p-8 w-full'>
+      <div className='min-h-screen p-8 w-full'>
         <Header setIsNavOpen={setIsNavOpen} />
         <div>
           <section className='flex flex-col gap-2'>
