@@ -35,7 +35,7 @@ export const navItems = [
   },
   {
     title: 'خروج',
-    link: '#',
+    link: '/login',
     icon: <LogOut />,
     bgcolor: 'bg-white',
     textcolor: 'text-black',

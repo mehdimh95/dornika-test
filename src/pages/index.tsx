@@ -1,4 +1,6 @@
+import TradingView from '@/components/Dashboard/Charts/TradingView';
 import Layout from '@/components/Dashboard/Layout/Layout';
+import { TTrendItem } from '@/types/dashboard.types';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -9,36 +11,14 @@ const CircleChart = dynamic(
   () => import('../components/Dashboard/Charts/Circle'),
   {
     ssr: false,
+    loading: () => <p>Loading...</p>,
   }
 );
 
 const BarsChart = dynamic(() => import('../components/Dashboard/Charts/Bars'), {
   ssr: false,
+  loading: () => <p>Loading...</p>,
 });
-
-const AdvancedRealTimeChartNoSSR = dynamic(
-  () =>
-    import('react-ts-tradingview-widgets').then((w) => w.AdvancedRealTimeChart),
-  {
-    ssr: false,
-  }
-);
-
-type TTrendItem = {
-  item: {
-    id: string;
-    coin_id: 4128;
-    name: string;
-    symbol: string;
-    market_cap_rank: 10;
-    thumb: string;
-    small: string;
-    large: string;
-    slug: string;
-    price_btc: 0.0007640637388540485;
-    score: 0;
-  };
-};
 
 const Dashboard = () => {
   const [trendingList, setTrendingList] = React.useState<TTrendItem[]>([]);
@@ -50,7 +30,6 @@ const Dashboard = () => {
       )
       .then((res) => {
         setTrendingList(res.data.coins);
-        console.log(res.data.coins);
       })
       .catch((err) => {
         console.error(err);
@@ -59,7 +38,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout isPrivate>
       <div className='w-3/4'>
         <div className='flex justify-between gap-4'>
           <div className='flex flex-col bg-white rounded-xl gap-7 p-5 flex-1'>
@@ -99,16 +78,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className='flex flex-col  bg-white rounded-xl gap-7 p-5 flex-1 my-4'>
-          <AdvancedRealTimeChartNoSSR
-            width='100%'
-            theme='light'
-            height={400}
-            hide_side_toolbar
-            hide_legend
-            symbol='BTC'
-            allow_symbol_change={false}
-            locale='fa_IR'
-          />
+          <TradingView />
         </div>
       </div>
       <div className='bg-white flex flex-col p-5 gap-6 w-1/4 rounded-xl'>
@@ -124,29 +94,24 @@ const Dashboard = () => {
         </div>
 
         <div className='font-bold flex flex-col gap-3'>
-          {trendingList.map(({ item }) => {
-            console.log({ item });
-            {
-              return (
-                <div
-                  key={item.coin_id}
-                  className='flex justify-between pb-3 border-b border-b-fade-gray '
-                >
-                  <div className='flex justify-between items-center gap-3'>
-                    <Image
-                      src={item.thumb}
-                      width={24}
-                      height={24}
-                      alt={item.name}
-                    />
-                    <p>{item.name}</p>
-                    <p className='text-fade-gray text-xs'>{item.slug}</p>
-                  </div>
-                  <p className='text-light-green'>{item.score}%</p>
-                </div>
-              );
-            }
-          })}
+          {trendingList.map(({ item }) => (
+            <div
+              key={item.coin_id}
+              className='flex justify-between pb-3 border-b border-b-fade-gray '
+            >
+              <div className='flex justify-between items-center gap-3'>
+                <Image
+                  src={item.thumb}
+                  width={24}
+                  height={24}
+                  alt={item.name}
+                />
+                <p>{item.name}</p>
+                <p className='text-fade-gray text-xs'>{item.slug}</p>
+              </div>
+              <p className='text-light-green'>{item.score}%</p>
+            </div>
+          ))}
         </div>
       </div>
     </Layout>

@@ -64,6 +64,10 @@ const Login = () => {
       .finally(() => setLoading(false));
   };
 
+  React.useEffect(() => {
+    localStorage.removeItem('token');
+  }, []);
+
   return (
     <Content>
       <div className='flex flex-row  h-screen items-stretch py-8 p-24'>
@@ -82,7 +86,7 @@ const Login = () => {
               src='/images/astronaut.svg'
               width={246}
               height={441}
-              alt='Picture of the author'
+              alt='login image'
             />
           </div>
         </div>
@@ -91,13 +95,12 @@ const Login = () => {
             src='/images/logo.svg'
             width={151}
             height={94}
-            alt='Picture of the author'
+            alt='login image'
             className='pt-14 pb-14'
           />
-
           <div className='flex flex-col justify-center items-center mb-16'>
             <h1 className='text-4xl  font-black mb-2'>ورود به داشبورد</h1>
-            <Link className='text-warm-blue' href='/singup'>
+            <Link className='text-warm-blue' href='/signup'>
               هنوز ثبت نام نکرده‌اید؟
             </Link>
           </div>

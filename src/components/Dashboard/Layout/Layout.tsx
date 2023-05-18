@@ -1,15 +1,29 @@
 import Button from '@/components/Button/Button';
 import classNames from 'classnames';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import useForceUpdate from 'use-force-update';
 import AreaChart from './AreaChart';
 import Header from './Header';
 import { navItems } from './menuItems';
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({
+  children,
+  isPrivate = false,
+}: {
+  children: React.ReactNode;
+  isPrivate?: boolean;
+}) => {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
   const forceUpdate = useForceUpdate();
+  const router = useRouter();
+
+  React.useEffect(() => {
+    const token = localStorage.getItem('token');
+    isPrivate && !token && router.push('/login');
+  }, []);
 
   React.useEffect(() => {
     forceUpdate();
@@ -38,13 +52,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               نیوکوین اسپیس
             </div>
             {navItems.map((item, index) => (
-              <Button
-                key={index}
-                className={`${item.bgcolor} ${item.textcolor} w-44 py-3 px-6 rounded-2xl flex flex-row items-center justify-start gap-4 mb-[10px]`}
-              >
-                {item.icon}
-                <span className='font-bold leading-6'>{item.title}</span>
-              </Button>
+              <Link href={item.link}>
+                <Button
+                  key={index}
+                  className={`${item.bgcolor} ${item.textcolor} w-44 py-3 px-6 rounded-2xl flex flex-row items-center justify-start gap-4 mb-[10px]`}
+                >
+                  {item.icon}
+                  <span className='font-bold leading-6'>{item.title}</span>
+                </Button>
+              </Link>
             ))}
           </div>
         </div>
