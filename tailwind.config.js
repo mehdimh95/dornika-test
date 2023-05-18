@@ -39,6 +39,7 @@ module.exports = {
         'pale-blue-green': '#E8F4FF',
         'fade-gray': '#D6D6D6',
         'light-blue': '#9CC4F2',
+        'light-green': '#29c57a',
       },
     },
   },
