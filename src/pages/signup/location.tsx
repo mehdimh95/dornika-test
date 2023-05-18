@@ -112,7 +112,7 @@ export default function Location() {
       isNextDisabled={false}
       nextButtonTable='ثبت نام'
       stepId={3}
-      prevHref={'/singup/register'}
+      prevHref={'/signup/register'}
     >
       <div className='flex flex-col'>
         <form onSubmit={handleSubmit(onSubmit)} id='step1'>

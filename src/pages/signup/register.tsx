@@ -58,7 +58,7 @@ const Register = () => {
   const onSubmit: SubmitHandler<FormValuesRegister> = async (fieldsData) => {
     localStorage.setItem('login-2', JSON.stringify(fieldsData));
     console.log(fieldsData);
-    Router.push('/singup/location');
+    Router.push('/signup/location');
   };
 
   const [timeLeft, { start, reset }] = useCountDown(initialTime, interval);
@@ -95,7 +95,7 @@ const Register = () => {
       isPrevDisabled={false}
       isNextDisabled={!isEnableSubmit}
       stepId={2}
-      prevHref={'/singup'}
+      prevHref={'/signup'}
     >
       <form onSubmit={handleSubmit(onSubmit)} id='step1'>
         <div className='flex flex-col gap-3 pt-16 max-w-2xl mx-auto'>

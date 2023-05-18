@@ -90,7 +90,7 @@ export default function SingUp() {
 
   const onSubmit: SubmitHandler<FormValuesSignUp> = async (fieldsData) => {
     localStorage.setItem('singUp', JSON.stringify(fieldsData));
-    Router.push('/singup/register');
+    Router.push('/signup/register');
 
     // const register: Partial<FormValuesRegister> = JSON.parse(
     //   localStorage.getItem('login-personal') || '{}'
