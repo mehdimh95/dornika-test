@@ -1,10 +1,16 @@
-import BlueButton from '@/components/Button/Button';
+import Button from '@/components/Button/Button';
 import FormController from '@/components/FormController';
+import { Lock } from '@/components/icons/lock';
 import Content from '@/components/layout/Content';
+import { TLoginResponse } from '@/types/login.type';
+import api from '@/utils/api';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import { ArrowLeft } from '../../components/icons/arrowleft';
 import { MessageText1 } from '../../components/icons/messge';
@@ -21,12 +27,14 @@ const SingUpSchema = yup.object({
     .required('این فیلد اجباری است'),
   password: yup.string().min(6, 'حداقل 6 کاراکتر').max(20, 'حداکثر 20 کاراکتر'),
 });
-export default function Login() {
+
+const Login = () => {
+  const router = useRouter();
+  const [loading, setLoading] = React.useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
-    setValue,
-    getValues,
     formState: { errors },
   } = useForm<FormValues>({
     mode: 'onTouched',
@@ -35,12 +43,26 @@ export default function Login() {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (fieldsData) => {
-    localStorage.setItem('login', JSON.stringify(fieldsData));
-    console.log(fieldsData);
+    setLoading(true);
+    api<TLoginResponse>({
+      url: '/login',
+      method: 'POST',
+      params: {
+        email: fieldsData.mail,
+        password: fieldsData.password,
+      },
+    })
+      .then((res) => {
+        localStorage.setItem('token', res.data.token);
+        toast.success('با موفقیت وارد شدید');
+        router.push('/');
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error('مشخصات وارد شده نادرست است');
+      })
+      .finally(() => setLoading(false));
   };
-  console.log(errors);
-
-  console.log(getValues());
 
   return (
     <Content>
@@ -87,23 +109,32 @@ export default function Login() {
               label={' ایمیل'}
               placeholder={' example@mail.com'}
               icon={<MessageText1 />}
-              {...register('mail')}
               error={errors?.mail?.message}
+              {...register('mail')}
             />
             <FormController
               label={' رمز عبور'}
               placeholder={'********'}
-              icon={<MessageText1 />}
+              type='password'
+              icon={<Lock />}
               error={errors?.password?.message}
               {...register('password')}
             />
-            <BlueButton>
+            <Button
+              type='submit'
+              loading={loading}
+              className={
+                ' bg-warm-blue w-44 text-white py-3 px-6 rounded-xl flex flex-row items-center justify-center gap-5'
+              }
+            >
               <span className='font-bold leading-6'> ورود به حساب</span>
               <ArrowLeft />
-            </BlueButton>
+            </Button>
           </form>
         </div>
       </div>
     </Content>
   );
-}
+};
+
+export default Login;

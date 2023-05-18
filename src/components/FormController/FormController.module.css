@@ -1,0 +1,10 @@
+.select_container {
+  line-height: 20px;
+}
+.select_container > div {
+  border-width: 0px;
+  width: 230px;
+}
+.select_container > div > div > span {
+  display: none;
+}

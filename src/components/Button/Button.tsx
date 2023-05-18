@@ -1,21 +1,34 @@
+import classNames from 'classnames';
 import React from 'react';
+import Loading from './Loading';
 
-interface Propsbutton {
+interface Propsbutton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
+  loading?: boolean;
 }
 
-const BlueButton: React.FC<Propsbutton> = ({ children }) => {
+const Button: React.FC<Propsbutton> = ({
+  children,
+  className,
+  loading = false,
+  disabled,
+  ...buttonProps
+}) => {
   return (
     <div className='flex  flex-col items-center'>
       <button
-        type='submit'
-        form='step1'
-        className='bg-warm-blue w-44 text-white py-3 px-6 rounded-xl flex flex-row items-center justify-center gap-5'
+        disabled={loading || disabled}
+        className={classNames(
+          'disabled:text-white disabled:bg-fade-gray',
+          className
+        )}
+        {...buttonProps}
       >
-        {children}
+        {}
+        {!loading ? children : <Loading />}
       </button>
     </div>
   );
 };
 
-export default BlueButton;
+export default Button;

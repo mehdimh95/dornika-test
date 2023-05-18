@@ -1,11 +1,17 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 
-interface Props {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   count?: number;
 }
+
 let currentOTPIndex: number = 0;
-const OtpReact: FC<Props> = ({ count = 4 }) => {
-  const [otp, setOtp] = useState<string[]>(new Array(count).fill(''));
+
+const OtpReact: FC<Props> = ({ count = 4, ...inputProps }) => {
+  const [otp, setOtp] = useState<string[]>(
+    inputProps.value
+      ? inputProps.value.toString().split('')
+      : new Array(count).fill('')
+  );
   const [activeOTPIndex, setActiveOTPIndex] = useState<number>(0);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -19,9 +25,9 @@ const OtpReact: FC<Props> = ({ count = 4 }) => {
 
     if (!value) setActiveOTPIndex(currentOTPIndex - 1);
     else setActiveOTPIndex(currentOTPIndex + 1);
-
+    // @ts-ignore: Unreachable code error
+    inputProps.onChange(newOTP.join(''));
     setOtp(newOTP);
-    console.log(newOTP);
   };
   const handleOnKeyDown = (
     { key }: React.KeyboardEvent<HTMLInputElement>,

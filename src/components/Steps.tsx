@@ -12,30 +12,36 @@ interface IStepsProps {
 
 const Steps: React.FC<IStepsProps> = ({ steps, currentStepId }) => {
   return (
-    <div className='flex flex-col h-screen items-start relative'>
-      {steps.map(({ id, label }) => (
+    <div className='flex flex-col h-screen items-start relative w-full pr-8 pt-[90px]'>
+      {steps.map(({ id, label }, index) => (
         <div
-          className='flex items-center justify-center gap-6 py-2 text-white'
+          className='flex flex-col items-start justify-center gap-3  py-2 text-white'
           key={id}
         >
-          <span
-            className={classNames(' rounded-full p-3  border-4', {
-              'bg-light-blue  border-white': currentStepId === id,
-              'bg-light-blue  border-light-blue ': currentStepId < id,
-              'bg-white border-white ': currentStepId > id,
-            })}
-          ></span>
-          <span
-            className={classNames({
-              'opacity-40': currentStepId < id,
-            })}
-          >
-            {label}
-          </span>
+          <div>
+            <span
+              className={classNames(' rounded-full px-3 border-4', {
+                'bg-light-blue  border-white': currentStepId === id,
+                'bg-light-blue  border-light-blue ': currentStepId < id,
+                'bg-white border-white ': currentStepId > id,
+              })}
+            ></span>
+            <span
+              className={classNames('pr-4', {
+                'opacity-40': currentStepId < id,
+              })}
+            >
+              {label}
+            </span>
+          </div>
+          {index + 1 !== steps.length && (
+            <span className='border border-white px-0 py-4 mr-4' />
+          )}
         </div>
       ))}
-
-      <span className='border border-white px-0 py-8  mr-4'></span>
+      {/* <span
+        className={classNames('border border-white px-0 py-8  mr-4')}
+      ></span> */}
     </div>
   );
 };
