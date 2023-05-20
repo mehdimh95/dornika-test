@@ -50,7 +50,7 @@ const Layout = ({
         <div className='flex flex-col items-stretch py-8 w-full'>
           <div className='w-full flex flex-col  justify-start items-center bg-white rounded-2xl h-full'>
             <Image
-              src='./images/logo.svg'
+              src='https://mehdimh95.github.io/dornika-test/images/logo.svg'
               width={85}
               height={84}
               alt=' '

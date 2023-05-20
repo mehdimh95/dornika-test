@@ -83,7 +83,7 @@ const Login = () => {
           </p>
           <div className='flex justify-center items-center mt-20'>
             <BlurImage
-              src='./images/astronaut.svg'
+              src='https://mehdimh95.github.io/dornika-test/images/astronaut.svg'
               width={246}
               height={441}
               alt='login image'
@@ -92,7 +92,7 @@ const Login = () => {
         </div>
         <div className='w-1/2 flex flex-col items-center justify-start bg-white rounded-l-2xl pb-36'>
           <BlurImage
-            src='./images/logo.svg'
+            src='https://mehdimh95.github.io/dornika-test/images/logo.svg'
             width={151}
             height={94}
             alt='login image'
@@ -130,7 +130,9 @@ const Login = () => {
                 ' bg-warm-blue w-44 text-white py-3 px-6 rounded-xl flex flex-row items-center justify-center gap-5'
               }
             >
-              <span className='font-bold leading-6'> ورود به حساب</span>
+              <span className='font-bold leading-6 whitespace-nowrap'>
+                ورود به حساب
+              </span>
               <ArrowLeft />
             </Button>
           </form>
