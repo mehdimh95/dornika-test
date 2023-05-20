@@ -70,7 +70,7 @@ const Login = () => {
 
   return (
     <Content>
-      <div className='flex flex-row  h-screen items-stretch py-8 p-24'>
+      <div className='flex flex-row  min-h-screen items-stretch py-8 p-24'>
         <div className='w-1/2 flex flex-col  justify-center items-center bg-warm-blue rounded-r-2xl'>
           <h1 className='text-4xl mb-5  text-white font-black'>
             صرافی ارز دیجیتال نیوکوین اسپیس
@@ -90,7 +90,7 @@ const Login = () => {
             />
           </div>
         </div>
-        <div className='w-1/2 flex flex-col items-center justify-start bg-white rounded-l-2xl'>
+        <div className='w-1/2 flex flex-col items-center justify-start bg-white rounded-l-2xl pb-36'>
           <Image
             src='/images/logo.svg'
             width={151}
