@@ -1,5 +1,5 @@
-import BlurImage from '@/components/BlurImage';
 import { Notification } from '@/components/icons/notfition/Nonfiction';
+import Image from 'next/image';
 
 const Header = ({
   setIsNavOpen,
@@ -24,7 +24,7 @@ const Header = ({
             <Notification />
             <div className='badge badge-xs border-green-300 bg-green-300 absolute top-[10px] right-[-3px]'></div>
           </div>
-          <BlurImage
+          <Image
             width={47}
             height={47}
             src='https://picsum.photos/47/47'

@@ -7,7 +7,7 @@ const SliderItem = (props: Props) => {
       <div className='flex justify-between '>
         <div className='flex justify-between gap-3'>
           <Image
-            src='/images/bitcoin.svg'
+            src='./images/bitcoin.svg'
             width={46}
             height={46}
             alt='Bitcoin-logo'
