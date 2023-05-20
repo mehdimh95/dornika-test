@@ -1,3 +1,4 @@
+import BlurImage from '@/components/BlurImage';
 import Button from '@/components/Button/Button';
 import FormController from '@/components/FormController';
 import { Lock } from '@/components/icons/lock';
@@ -5,7 +6,6 @@ import Content from '@/components/layout/Content';
 import { TLoginResponse } from '@/types/login.type';
 import api from '@/utils/api';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -82,7 +82,7 @@ const Login = () => {
             به بزرگترین بازار ارز دیجیتال ایران بپیوندید
           </p>
           <div className='flex justify-center items-center mt-20'>
-            <Image
+            <BlurImage
               src='/images/astronaut.svg'
               width={246}
               height={441}
@@ -91,7 +91,7 @@ const Login = () => {
           </div>
         </div>
         <div className='w-1/2 flex flex-col items-center justify-start bg-white rounded-l-2xl pb-36'>
-          <Image
+          <BlurImage
             src='/images/logo.svg'
             width={151}
             height={94}

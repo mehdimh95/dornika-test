@@ -1,9 +1,9 @@
+import BlurImage from '@/components/BlurImage';
 import TradingView from '@/components/Dashboard/Charts/TradingView';
 import Layout from '@/components/Dashboard/Layout/Layout';
 import { TTrendItem } from '@/types/dashboard.types';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import React from 'react';
 import { toast } from 'react-toastify';
 
@@ -100,7 +100,7 @@ const Dashboard = () => {
               className='flex justify-between pb-3 border-b border-b-fade-gray '
             >
               <div className='flex justify-between items-center gap-3'>
-                <Image
+                <BlurImage
                   src={item.thumb}
                   width={24}
                   height={24}

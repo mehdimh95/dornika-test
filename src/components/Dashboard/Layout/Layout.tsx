@@ -1,4 +1,5 @@
 import Button from '@/components/Button/Button';
+import Loading from '@/components/Button/Loading';
 import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,17 +20,24 @@ const Layout = ({
   const [isNavOpen, setIsNavOpen] = React.useState(false);
   const forceUpdate = useForceUpdate();
   const router = useRouter();
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     const token = localStorage.getItem('token');
-    isPrivate && !token && router.push('/login');
+    isPrivate && !token ? router.push('/login') : setIsLoading(false);
   }, []);
 
   React.useEffect(() => {
     forceUpdate();
   }, [isNavOpen]);
 
-  return (
+  return isLoading ? (
+    <div className='flex w-screen h-screen justify-center items-center'>
+      <div className='scale-[2.5]'>
+        <Loading />
+      </div>
+    </div>
+  ) : (
     <div className='flex'>
       <div
         className={classNames(

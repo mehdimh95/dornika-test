@@ -1,3 +1,4 @@
+import BlurImage from '@/components/BlurImage';
 import { Notification } from '@/components/icons/notfition/Nonfiction';
 
 const Header = ({
@@ -23,7 +24,9 @@ const Header = ({
             <Notification />
             <div className='badge badge-xs border-green-300 bg-green-300 absolute top-[10px] right-[-3px]'></div>
           </div>
-          <img
+          <BlurImage
+            width={47}
+            height={47}
             src='https://picsum.photos/47/47'
             alt='user'
             className='rounded-full'
