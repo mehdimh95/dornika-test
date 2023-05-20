@@ -6,7 +6,11 @@ import { Mobile } from '@/components/icons/molbile';
 import Layout from '@/components/layout/Layout';
 import OtpReact from '@/components/otp/Otp';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Router from 'next/router';
+import {
+  phoneNumberNormalizer,
+  phoneNumberValidator,
+} from '@persian-tools/persian-tools';
+import { useRouter } from 'next/router';
 import React from 'react';
 import useCountDown from 'react-countdown-hook';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -22,57 +26,57 @@ export interface FormValuesRegister {
   code: string;
 }
 
+const generateRandomCode = () => Math.floor(1000 + Math.random() * 9000);
+
 const SingUpSchema = yup
   .object({
     phone: yup
       .string()
       .required('این فیلد اجباری است')
-      .length(10, ' شماره صحیح نیست')
-      .matches(/^9[0-9]{9}$/, ' شماره صحیح نیست'),
-
-    mail: yup.string().email('ایمیل وارد شده صحیح نیست'),
+      .test('check-persian-tool', 'شماره‌ی وارد شده نادرست است', (value) =>
+        phoneNumberValidator(value)
+      ),
+    email: yup.string().email('ایمیل وارد شده صحیح نیست'),
   })
   .required();
 
-const generateRandomCode = () => {
-  return Math.floor(1000 + Math.random() * 9000);
-};
-
 const Register = () => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    getValues,
-    formState: { errors },
-  } = useForm<FormValuesRegister>({
-    mode: 'onTouched',
-    shouldFocusError: true,
-    resolver: yupResolver(SingUpSchema),
-  });
+  const { register, handleSubmit, control, getValues, watch, formState } =
+    useForm<FormValuesRegister>({
+      mode: 'onTouched',
+      shouldFocusError: true,
+      resolver: yupResolver(SingUpSchema),
+    });
 
   const [code, setCode] = React.useState<number | null>(null);
   const [isEnableSubmit, setIsEnableSubmit] = React.useState(false);
   const [isShowCodeBox, setIsShowCodeBox] = React.useState(false);
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormValuesRegister> = async (fieldsData) => {
-    localStorage.setItem('login-2', JSON.stringify(fieldsData));
-    console.log(fieldsData);
-    Router.push('/signup/location');
+    localStorage.setItem(
+      'login-2',
+      JSON.stringify({
+        ...fieldsData,
+        phone: phoneNumberNormalizer(
+          fieldsData.phone.toString(),
+          '0'
+        ).substring(1),
+      })
+    );
+    if (isEnableSubmit) {
+      router.push('/signup/location');
+    }
   };
 
   const [timeLeft, { start, reset }] = useCountDown(initialTime, interval);
 
-  React.useEffect(() => {
-    start();
-    setCode(generateRandomCode());
-  }, []);
-
-  const restart = React.useCallback(() => {
-    setCode(generateRandomCode());
-    toast.info(`کد شما: ${code}`);
+  const restart = () => {
+    const newCode = generateRandomCode();
+    setCode(newCode);
+    toast.info(`کد شما: ${newCode}`);
     reset();
-  }, []);
+  };
 
   const handleSendCode = () => {
     toast.info(`کد شما: ${code}`);
@@ -82,13 +86,26 @@ const Register = () => {
   const handleOtpVerify = () => {
     if (code?.toString() === getValues('code')) {
       toast.success('شماره‌ی شما با موفقیت تایید شد');
-      setIsEnableSubmit(true);
       setIsShowCodeBox(false);
     } else {
       toast.error('کد تایید شما نامعتبر است');
-      setIsEnableSubmit(false);
     }
   };
+
+  React.useEffect(() => {
+    start();
+    setCode(generateRandomCode());
+  }, []);
+
+  React.useEffect(() => {
+    if (
+      code?.toString() === getValues('code') &&
+      getValues('email') &&
+      getValues('phone')
+    ) {
+      setIsEnableSubmit(true);
+    }
+  }, [watch()]);
 
   return (
     <Layout
@@ -103,16 +120,17 @@ const Register = () => {
             label={' شماره همراه'}
             placeholder={'09112564798'}
             icon={<Mobile />}
-            error={errors?.phone?.message}
+            error={formState.errors?.phone?.message}
             {...register('phone')}
             endAdornment={
-              <span
+              <button
                 role='button'
-                className='text-xs text-warm-blue cursor-pointer'
+                className='text-xs text-warm-blue cursor-pointer disabled:text-gray-500 disabled:cursor-not-allowed'
+                disabled={!getValues('phone')}
                 onClick={handleSendCode}
               >
                 ارسال
-              </span>
+              </button>
             }
           />
 
@@ -169,7 +187,7 @@ const Register = () => {
             placeholder={' example@mail.com'}
             icon={<MessageText1 />}
             {...register('email')}
-            error={errors?.email?.message}
+            error={formState.errors?.email?.message}
           />
         </div>
       </form>

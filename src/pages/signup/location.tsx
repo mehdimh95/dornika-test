@@ -23,11 +23,11 @@ import { FormValuesRegister } from './register';
 export interface FormValuesLocation {
   province: string;
   city: string;
+  address: string;
 }
 const LocationSchema = yup
   .object({
-    province: yup.string().required('این فیلد اجباری است'),
-    city: yup.string().required('این فیلد اجباری است'),
+    address: yup.string().required('این فیلد اجباری است'),
   })
   .required();
 
@@ -143,7 +143,7 @@ export default function Location() {
                     onChange: handleSelectCity as any,
                     options: citiesList,
                   }}
-                  {...register('city')}
+                  {...register('province')}
                 />
               </div>
               <FormController
@@ -153,7 +153,9 @@ export default function Location() {
                   </span>
                 }
                 label={'آدرس'}
+                error={errors?.address?.message}
                 placeholder={'ایران مازندران ساری'}
+                {...register('address')}
               />
               <div className='flex gap-12 max-w-2xl w-full'>
                 <FormController
@@ -191,6 +193,7 @@ export default function Location() {
                       بستن
                     </Button>
                     <Button
+                      onClick={closeModal}
                       className={
                         'bg-orange-400  w-44 text-white py-3 px-6 rounded-xl flex flex-row items-center justify-center gap-5'
                       }
