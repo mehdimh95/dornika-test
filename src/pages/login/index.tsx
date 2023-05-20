@@ -72,13 +72,13 @@ const Login = () => {
     <Content>
       <div className='flex flex-row  min-h-screen items-stretch py-8 p-24'>
         <div className='w-1/2 flex flex-col  justify-center items-center bg-warm-blue rounded-r-2xl'>
-          <h1 className='text-4xl mb-5  text-white font-black'>
+          <h1 className='xl:text-4xl sm:text-2xl mb-5  text-white font-black'>
             صرافی ارز دیجیتال نیوکوین اسپیس
           </h1>
-          <p className='text-center text-white text-xl font-medium'>
+          <p className='text-center text-white xl:text-xl sm:text-sm font-medium'>
             خرید و فروش امن بیت‌کوین و ارزهای دیجیتال
           </p>
-          <p className='text-center text-white text-xl font-medium'>
+          <p className='text-center text-white xl:text-xl sm:text-sm font-medium'>
             به بزرگترین بازار ارز دیجیتال ایران بپیوندید
           </p>
           <div className='flex justify-center items-center mt-20'>
