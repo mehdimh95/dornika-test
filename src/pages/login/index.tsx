@@ -83,7 +83,7 @@ const Login = () => {
           </p>
           <div className='flex justify-center items-center mt-20'>
             <BlurImage
-              src='/images/astronaut.svg'
+              src='./images/astronaut.svg'
               width={246}
               height={441}
               alt='login image'
@@ -92,7 +92,7 @@ const Login = () => {
         </div>
         <div className='w-1/2 flex flex-col items-center justify-start bg-white rounded-l-2xl pb-36'>
           <BlurImage
-            src='/images/logo.svg'
+            src='./images/logo.svg'
             width={151}
             height={94}
             alt='login image'
