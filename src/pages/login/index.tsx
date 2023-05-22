@@ -71,7 +71,7 @@ const Login = () => {
   return (
     <Content>
       <div className='flex flex-row  min-h-screen items-stretch lg:py-8 lg:p-24'>
-        <div className='w-1/2 flex flex-col  items-center bg-warm-blue rounded-r-2xl pt-20'>
+        <div className='w-1/2 hidden md:flex flex-col  items-center bg-warm-blue rounded-r-2xl pt-20'>
           <h1 className='xl:text-4xl sm:text-2xl text-sm mb-5  text-white font-black whitespace-nowrap'>
             صرافی ارز دیجیتال نیوکوین اسپیس
           </h1>
@@ -90,7 +90,7 @@ const Login = () => {
             />
           </div>
         </div>
-        <div className='w-1/2 flex flex-col items-center  bg-white  rounded-l-2xl pb-xl-36 pt-8'>
+        <div className='md:w-1/2 w-full flex flex-col items-center  bg-white  rounded-l-2xl pb-xl-36 pt-8'>
           <BlurImage
             src='https://mehdimh95.github.io/dornika-test/images/logo.svg'
             width={151}

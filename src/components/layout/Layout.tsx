@@ -21,7 +21,7 @@ const Layout: React.FC<{
   prevHref,
 }) => {
   return (
-    <div className='flex h-screen items-stretch py-8 p-24'>
+    <div className='flex h-screen items-stretch md:py-8 md:p-24'>
       <Aside stepId={stepId} />
       <Main>
         <Header stepId={stepId} />
