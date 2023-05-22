@@ -33,7 +33,7 @@ const FormController = React.forwardRef<HTMLInputElement, IFormController>(
       <div className='relative w-full'>
         <div className='flex flex-col gap-1'>
           <label className='label' htmlFor={name}>
-            <span className='label-text text-base text-slate-600  font-bold absolute top-[-1] right-9 bg-white px-3'>
+            <span className='label-text text-base text-slate-600  font-bold absolute top-[5px] right-9 bg-white px-3'>
               {label}
             </span>
           </label>
@@ -54,7 +54,7 @@ const FormController = React.forwardRef<HTMLInputElement, IFormController>(
                 ref={ref}
                 type={type !== 'password' ? type : isShow ? 'text' : 'password'}
                 {...inputProps}
-                className='flex-1 outline-none bg-transparent'
+                className='flex-1 outline-none bg-transparent w-24 sm:w-full'
               />
             )}
 

@@ -13,7 +13,7 @@ const AreaChart = ({
   setIsNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
-    <div className='flex gap-x-4'>
+    <div className='hidden md:flex flex-row gap-x-4 whitespace-nowrap'>
       <SliderItem
         {...{
           options: {

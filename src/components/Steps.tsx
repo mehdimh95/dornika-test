@@ -12,10 +12,10 @@ interface IStepsProps {
 
 const Steps: React.FC<IStepsProps> = ({ steps, currentStepId }) => {
   return (
-    <div className='flex flex-col h-screen items-start relative w-full pr-8 pt-[90px]'>
+    <div className='lg:flex flex-col h-screen items-start relative w-full pr-8 pt-[90px]'>
       {steps.map(({ id, label }, index) => (
         <div
-          className='flex flex-col items-start justify-center gap-3  py-2 text-white'
+          className='flex flex-col items-start justify-center gap-3 py-2 text-white'
           key={id}
         >
           <div>
@@ -27,9 +27,12 @@ const Steps: React.FC<IStepsProps> = ({ steps, currentStepId }) => {
               })}
             ></span>
             <span
-              className={classNames('pr-4', {
-                'opacity-40': currentStepId < id,
-              })}
+              className={classNames(
+                'pr-4 text-[10px] md:text-xs lg:text-base whitespace-nowrap',
+                {
+                  'opacity-40': currentStepId < id,
+                }
+              )}
             >
               {label}
             </span>

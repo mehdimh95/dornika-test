@@ -24,7 +24,6 @@ const Button: React.FC<Propsbutton> = ({
         )}
         {...buttonProps}
       >
-        {}
         {!loading ? children : <Loading />}
       </button>
     </div>

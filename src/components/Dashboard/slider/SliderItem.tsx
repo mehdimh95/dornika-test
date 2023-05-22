@@ -4,7 +4,7 @@ import Chart, { Props } from 'react-apexcharts';
 const SliderItem = (props: Props) => {
   return (
     <div className='bg-white rounded-xl p-3 font-bold my-[18px] flex flex-1 flex-col gap-3'>
-      <div className='flex justify-between '>
+      <div className='flex justify-between gap-14'>
         <div className='flex justify-between gap-3'>
           <Image
             src='https://mehdimh95.github.io/dornika-test/images/bitcoin.svg'

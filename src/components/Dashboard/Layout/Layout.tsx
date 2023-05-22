@@ -76,9 +76,9 @@ const Layout = ({
       <div className='min-h-screen p-8 w-full'>
         <Header setIsNavOpen={setIsNavOpen} />
         <div>
-          <section className='flex flex-col gap-2'>
+          <section className='flex flex-col gap-2 pt-3 lg:pt-0'>
             <AreaChart {...{ isNavOpen, setIsNavOpen }} />
-            <div className='flex gap-4'>{children}</div>
+            <div className='flex flex-col md:flex-row gap-4'>{children}</div>
           </section>
         </div>
       </div>

@@ -9,7 +9,7 @@ const stepItems: IStep[] = [
 
 const Aside = ({ stepId }: { stepId: number }) => {
   return (
-    <div className='w-1/4 flex flex-col  justify-start items-center bg-warm-blue rounded-r-2xl'>
+    <div className='hidden w-1/4 md:flex md:flex-col  justify-start items-center bg-warm-blue rounded-r-2xl'>
       <Image
         src='https://mehdimh95.github.io/dornika-test/images/logo.svg'
         width={151}
@@ -17,7 +17,9 @@ const Aside = ({ stepId }: { stepId: number }) => {
         alt=' '
         className='pt-20 pb-5'
       />
-      <p className=' text-white font-black text-4xl'>ثبت نام</p>
+      <p className=' text-white font-black xl:text-4xl sm:text-2xl text-sm'>
+        ثبت نام
+      </p>
       <Steps currentStepId={stepId} steps={stepItems} />
     </div>
   );

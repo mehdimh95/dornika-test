@@ -118,7 +118,7 @@ export default function Location() {
         <form onSubmit={handleSubmit(onSubmit)} id='step1'>
           <div className='flex flex-col items-center justify-start '>
             <div className='flex flex-col gap-12 pt-16 max-w-2xl w-full'>
-              <div className='flex gap-12 max-w-2xl w-full'>
+              <div className='flex flex-col lg:flex-row gap-12 max-w-2xl w-full'>
                 <FormController
                   icon={<MyLocation />}
                   label={'استان'}

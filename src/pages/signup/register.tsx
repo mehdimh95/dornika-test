@@ -115,7 +115,7 @@ const Register = () => {
       prevHref={'/signup'}
     >
       <form onSubmit={handleSubmit(onSubmit)} id='step1'>
-        <div className='flex flex-col gap-3 pt-16 max-w-2xl mx-auto'>
+        <div className='flex flex-col gap-10 pt-16 max-w-2xl mx-auto'>
           <FormController
             label={' شماره همراه'}
             placeholder={'09112564798'}

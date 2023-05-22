@@ -39,13 +39,13 @@ const Dashboard = () => {
 
   return (
     <Layout isPrivate>
-      <div className='w-3/4'>
-        <div className='flex justify-between gap-4'>
+      <div className='md:w-3/4 w-full'>
+        <div className='flex flex-col lg:flex-row justify-between gap-4'>
           <div className='flex flex-col bg-white rounded-xl gap-7 p-5 flex-1'>
             <div className='flex justify-between items-center'>
               <div>
                 <p className='font-bold mb-5'>دارایی‌های کیف پول</p>
-                <div className='flex flex-col gap-2 flex-1'>
+                <div className='flex flex-row md:flex-col gap-2 flex-1'>
                   <div className='flex gap-2 items-center'>
                     <div className='w-2 h-2 rounded-md bg-orange-500' />
                     <strong className='text-base font-bold'>بیتکوین</strong>
@@ -77,11 +77,11 @@ const Dashboard = () => {
             <BarsChart />
           </div>
         </div>
-        <div className='flex flex-col  bg-white rounded-xl gap-7 p-5 flex-1 my-4'>
+        <div className='flex flex-col bg-white rounded-xl gap-7 p-5 flex-1 my-4'>
           <TradingView />
         </div>
       </div>
-      <div className='bg-white flex flex-col p-5 gap-6 w-1/4 rounded-xl'>
+      <div className='bg-white flex flex-col p-5 gap-6 w-full md:w-1/3 lg:w-1/4 rounded-xl'>
         <div className='flex justify-between'>
           <div>محبوب‌ترین کوین‌ها</div>
           <div className='border-fade-gray border text-sm  px-4 py-2 rounded-xl'>

@@ -91,42 +91,7 @@ export default function SingUp() {
   const onSubmit: SubmitHandler<FormValuesSignUp> = async (fieldsData) => {
     localStorage.setItem('singUp', JSON.stringify(fieldsData));
     Router.push('/signup/register');
-
-    // const register: Partial<FormValuesRegister> = JSON.parse(
-    //   localStorage.getItem('login-personal') || '{}'
-    // );
-    // try {
-    //   const response = await axios({
-    //     method: 'post',
-    //     url: 'https://apingweb.com/api/user/create',
-    //     data: {
-    //       ...fieldsData,
-    //       ...register,
-    //     },
-    //     validateStatus: (status) => status == 200,
-    //   });
-    //   console.log(response);
-    //   // Router.push('/');
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
-
-  // useEffect(() => {
-  //   const cachedInfo: Partial<FormValuesSignUp> = JSON.parse(
-  //     localStorage.getItem('singUp') || '{}'
-  //   );
-
-  //   if (cachedInfo.name) {
-  //     setValue('name', cachedInfo.name);
-  //   }
-  //   if (cachedInfo.id) {
-  //     setValue('id', cachedInfo.id);
-  //   }
-  //   if (cachedInfo.birth) {
-  //     setValue('birth', cachedInfo.birth);
-  //   }
-  // }, []);
 
   return (
     <Layout isPrevDisabled isNextDisabled={false} stepId={1}>

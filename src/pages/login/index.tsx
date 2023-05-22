@@ -2,6 +2,7 @@ import BlurImage from '@/components/BlurImage';
 import Button from '@/components/Button/Button';
 import FormController from '@/components/FormController';
 import { Lock } from '@/components/icons/lock';
+import { MessageText1 } from '@/components/icons/messge';
 import Content from '@/components/layout/Content';
 import { TLoginResponse } from '@/types/login.type';
 import api from '@/utils/api';
@@ -13,7 +14,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import { ArrowLeft } from '../../components/icons/arrowleft';
-import { MessageText1 } from '../../components/icons/messge';
 
 export interface FormValues {
   password: number;
@@ -70,15 +70,15 @@ const Login = () => {
 
   return (
     <Content>
-      <div className='flex flex-row  min-h-screen items-stretch py-8 p-24'>
-        <div className='w-1/2 flex flex-col  justify-center items-center bg-warm-blue rounded-r-2xl'>
-          <h1 className='xl:text-4xl sm:text-2xl mb-5  text-white font-black'>
+      <div className='flex flex-row  min-h-screen items-stretch lg:py-8 lg:p-24'>
+        <div className='w-1/2 flex flex-col  items-center bg-warm-blue rounded-r-2xl pt-20'>
+          <h1 className='xl:text-4xl sm:text-2xl text-sm mb-5  text-white font-black whitespace-nowrap'>
             صرافی ارز دیجیتال نیوکوین اسپیس
           </h1>
-          <p className='text-center text-white xl:text-xl sm:text-sm font-medium'>
+          <p className='text-center text-white text-xs md:text-sm xl:text-xl'>
             خرید و فروش امن بیت‌کوین و ارزهای دیجیتال
           </p>
-          <p className='text-center text-white xl:text-xl sm:text-sm font-medium'>
+          <p className='text-center text-white text-xs md:text-sm xl:text-xl'>
             به بزرگترین بازار ارز دیجیتال ایران بپیوندید
           </p>
           <div className='flex justify-center items-center mt-20'>
@@ -90,7 +90,7 @@ const Login = () => {
             />
           </div>
         </div>
-        <div className='w-1/2 flex flex-col items-center justify-start bg-white rounded-l-2xl pb-36'>
+        <div className='w-1/2 flex flex-col items-center  bg-white  rounded-l-2xl pb-xl-36 pt-8'>
           <BlurImage
             src='https://mehdimh95.github.io/dornika-test/images/logo.svg'
             width={151}
@@ -99,8 +99,13 @@ const Login = () => {
             className='pt-14 pb-14'
           />
           <div className='flex flex-col justify-center items-center mb-16'>
-            <h1 className='text-4xl  font-black mb-2'>ورود به داشبورد</h1>
-            <Link className='text-warm-blue' href='/signup'>
+            <h1 className='lg:text-4xl text-xl font-black mb-2'>
+              ورود به داشبورد
+            </h1>
+            <Link
+              className='text-warm-blue text-xs lg:text-base'
+              href='/signup'
+            >
               هنوز ثبت نام نکرده‌اید؟
             </Link>
           </div>
